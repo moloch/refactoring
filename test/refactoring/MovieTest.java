@@ -1,34 +1,27 @@
 package refactoring;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class MovieTest {
 
-	private Movie movie;
-
-	@Before
-	public void setUp() {
-		movie = new Movie("Gran Torino", 666);
-	}
-
 	@Test
-	public void testGetPriceCode() {
-		assertEquals(666, movie.getPriceCode());
+	public void testGetCharge() {
+		assertEquals(2, getChargeForMovie(Movie.REGULAR, 2), 0.01);
+		assertEquals(3.5, getChargeForMovie(Movie.REGULAR, 3), 0.01);
+		assertEquals(5, getChargeForMovie(Movie.REGULAR, 4), 0.01);
+		assertEquals(6.5, getChargeForMovie(Movie.REGULAR, 5), 0.01);
+		assertEquals(9, getChargeForMovie(Movie.NEW_RELEASE, 3), 0.01);
+		assertEquals(12, getChargeForMovie(Movie.NEW_RELEASE, 4), 0.01);
+		assertEquals(15, getChargeForMovie(Movie.NEW_RELEASE, 5), 0.01);
+		assertEquals(1.5, getChargeForMovie(Movie.CHILDRENS, 3), 0.01);
+		assertEquals(3, getChargeForMovie(Movie.CHILDRENS, 4), 0.01);
+		assertEquals(4.5, getChargeForMovie(Movie.CHILDRENS, 5), 0.01);
+
 	}
 
-	@Test
-	public void testSetPriceCode() {
-		assertEquals(666, movie.getPriceCode());
-		movie.setPriceCode(777);
-		assertEquals(777, movie.getPriceCode());
+	private double getChargeForMovie(int type, int days) {
+		return (new Movie("", type)).getCharge(days);
 	}
-
-	@Test
-	public void testGetTitle() {
-		assertEquals("Gran Torino", movie.getTitle());
-	}
-
 }
