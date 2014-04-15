@@ -51,7 +51,7 @@ class Customer {
 		String result = "Rental Record for " + getName() + "\n";
 		while (rentals.hasMoreElements()) {
 			Rental each = (Rental) rentals.nextElement();
-			frequentRenterPoints += each.getFrequentRenterPoints();
+			frequentRenterPoints += each.getMovie().getFrequentRenterPoints(each.getDaysRented());
 		}
 		return frequentRenterPoints;
 	}
